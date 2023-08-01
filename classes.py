@@ -11,4 +11,6 @@ class Task():
         self.category=category
         self.finished=finished
     def __repr__(self):
-        return f"{self.name},Start-{self.start_date},End{self.finish_date}\n"
+        return f"Task-ID:{self.id}\tTask:{self.name}\tStart Date:{self.start_date}\tFinish Date:{self.finish_date}\tCategory:{self.category}\tFinished:{self.finished}\tDescription:{self.description}"
+    
+

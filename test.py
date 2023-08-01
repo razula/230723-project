@@ -2,13 +2,11 @@
 ####################Imports##########################################################
 from classes import Task
 import random
-from functions import create,view,delete,generate_id,add
-from files import load_list,owner_list
+from functions import create,view,delete,add
+from files import load_list,owner_list,load_file
 
 #####################################################################################
 ####################Testing functions################################################
-generate_id(owner="Tal")
-
 def create_tasks(num:int=0):
     for i in range(num):
         owner=random.choice(load_list(filename="owners.pickle",list_name=owner_list))
@@ -31,4 +29,12 @@ def test_delete(id):
     if delete(id)==True:
         return True
     else: return False
-print(test_view("ra"))
+
+def show_all_tasks():
+    local_list=load_file()
+    for row in local_list:
+        print(row)
+    return ""
+
+
+print(show_all_tasks())

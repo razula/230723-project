@@ -20,7 +20,6 @@ def load_list(filename="category.pickle",list_name=category_list):
     except:
         with open (filename , "wb") as f:
             pickle.dump(list_name,f)
-            #save_file(list_to_save=category_list,filename="catergory.pickle")
             return list_name
 
 

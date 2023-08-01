@@ -25,10 +25,9 @@ def generate_id(owner):
     max_id=0
     id=0
     for row in tasks:
-        if row.owner==owner:
-            id=row.id
-            if id>max_id:
-                max_id=id
+        id=row.id
+        if id>max_id:
+            max_id=id
     max_final=max_id+1
     return max_final
 
@@ -154,8 +153,8 @@ What detail would you like to change?:
             another_change()
     
     if parameter==6:
-        new_val=input(f"Please enter a new value:\n")
         print (show_category())
+        new_val=input(f"Please enter a new value:\n")
         for row in tasks:
             if row.owner==owner and row.id==task_id and new_val in categories:
                 new_val=row.category
@@ -169,29 +168,28 @@ What detail would you like to change?:
 
 def view(owner):
     loaded=load_file()
-    dict_keys=["Task","Start","End","Description","Category","ID","Finished?"]
-    full_list=[]
     count=False
     for row in loaded:
         if owner.capitalize()==row.owner:
-           dict_vals=[row.name,row.start_date,row.finish_date,row.description,row.category,row.id,row.finished]
-           row_dict=dict(zip(dict_keys,dict_vals))
-           full_list.append(row_dict)
+           print(row)
+           #dict_vals=[row.name,row.start_date,row.finish_date,row.description,row.category,row.id,row.finished]
+           #row_dict=dict(zip(dict_keys,dict_vals))
+           #full_list.append(row_dict)
            count=True
     if count:
-        print (f"The tasks of {owner} are:", *full_list,sep="\n" )
-        time.sleep(3)
+       # print (f"The tasks of {owner} are:", *full_list,sep="\n" )
+        time.sleep(5)
         return True
     else:
-        print ("The owner does not exist..")
+        print (f"The owner {owner} has no tasks..")
         time.sleep(3)
         return False
     
-def delete(id):
+def delete(id,owner):
     loaded=load_file()
     count=False
     for task in loaded.copy():
-        if task.id==id:
+        if task.id==id and task.owner==owner:
             count=count+1
             loaded.remove(task)
             save_file(loaded)
@@ -243,16 +241,21 @@ def category_edit():
 
     if category_option==1:
         print(show_category())
+        time.sleep(2)
+        cls()
+        category_edit()
     
     if category_option==2:
-        count=0
+        print(show_category())
+        #count=0
         category_to_add=input("New category name:\n")
-        count=count+1
+        #count=count+1
         if category_to_add.lower().strip() in local_list:
-            print("Category already exist")
+            print(f"The category '{category_to_add}' already exist")
             category_edit()
         else:
             local_list.append(category_to_add)
+            print (f"The category '{category_to_add}' added successfully.")
             save_file(list_to_save=local_list,filename="category.pickle")
 
 
@@ -272,9 +275,9 @@ def category_edit():
                 local_list.remove(category_to_remove)
                 save_file(list_to_save=local_list,filename="category.pickle")
                 count=1
-                print (f"the category '{category_to_remove}' removed successfully")
+                print (f"The category '{category_to_remove}' removed successfully")
         if count==0:
-            print(f"{category_to_remove} does not exist..")
+            print(f"The category '{category_to_remove}' does not exist..")
 
     if category_option==4:
         print ("exiting to the main menu..")
@@ -299,8 +302,8 @@ def owner_edit():
 
     if owner_menu==1:
         cls()
-        print(local_list)
-        time.sleep(2)
+        print(f"The owners are:{local_list}")
+        time.sleep(3)
         cls()
         owner_edit()
     

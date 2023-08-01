@@ -23,9 +23,9 @@ Please choose an option:
             cls()
             name=input("Choose a title for the task:\n")
             start_date=input("""
-start date:
-If you wish to choose the current date-write 1
-If you want to insert a different date-write 2\n""")
+Start date:
+1) To choose the current date
+2) To insert a different date\n""")
             if start_date=='1':
                 start_date=get_date()
             elif start_date=='2':
@@ -34,8 +34,8 @@ If you want to insert a different date-write 2\n""")
     
             finish_date=input("""
 Finish date:
-If you wish to choose the current date-write 1
-If you want to insert a different date-write 2\n""")
+1) To choose the current date
+2) To insert a different date\n""")
             if finish_date=='1':
                 finish_date=get_date()
             elif finish_date=='2':
@@ -58,10 +58,12 @@ If you want to insert a different date-write 2\n""")
             cls()
         if menu.lower().strip()=="r":
             cls()
-            owner=input("Enter a task owner name:\n")
-            print(view(owner))
+            owner=input("Enter a task owner name:\n").capitalize()
+            if not view(owner):
+                app_menu()
+            else: pass
             id=int(input("Enter a task ID to remove:\n"))
-            delete(id)
+            delete(id=id,owner=owner)
             cls()
         if menu.lower().strip()=="q":
             print("Bye bye..")
