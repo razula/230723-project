@@ -82,9 +82,3 @@ Finish date:
             cls()
             owner=input("Please enter the task owner name:\n").capitalize()
             status(owner)
-            
-
-            
-
-        
-app_menu()
