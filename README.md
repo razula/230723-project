@@ -26,13 +26,13 @@ Clone the repository.
 
 Run the `main.py` script in your terminal:
 
-\```bash
+```bash
 python main.py
-\```
+```
 
 You'll be presented with the main menu:
 
-\```
+```
 Welcome!
 Please choose an option:
 
@@ -45,6 +45,6 @@ Please choose an option:
 (O)wner options
 
 (Q)uit
-\```
+```
 
 Follow the on-screen prompts to manage your tasks.
