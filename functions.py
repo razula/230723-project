@@ -172,12 +172,8 @@ def view(owner):
     for row in loaded:
         if owner.capitalize()==row.owner:
            print(row)
-           #dict_vals=[row.name,row.start_date,row.finish_date,row.description,row.category,row.id,row.finished]
-           #row_dict=dict(zip(dict_keys,dict_vals))
-           #full_list.append(row_dict)
            count=True
     if count:
-       # print (f"The tasks of {owner} are:", *full_list,sep="\n" )
         time.sleep(5)
         return True
     else:
@@ -247,9 +243,7 @@ def category_edit():
     
     if category_option==2:
         print(show_category())
-        #count=0
         category_to_add=input("New category name:\n")
-        #count=count+1
         if category_to_add.lower().strip() in local_list:
             print(f"The category '{category_to_add}' already exist")
             category_edit()
